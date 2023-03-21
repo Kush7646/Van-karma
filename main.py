@@ -5,16 +5,16 @@ from tqdm import tqdm
 import os
 
 n_epochs = 20000
-skip_steps = 2
+skip_steps = 2000
 
-Re = 120
+Re = 80
 Nx = 300
-Ny = 120
+Ny = 100
 e = 4
 Cx = Nx//5
 Cy = Ny//2
 R = Ny//5
-u = 0.1
+u = 0.04
 
 N_DISCRETE_VELOCITIES = 9
 
@@ -32,9 +32,9 @@ OPPOSITE_LATTICE_INDICES = np.array([
 ])
 
 LATTICE_WEIGHTS = np.array([
-    4/9,                        # Center Velocity [0,]
-    1/9,  1/9,  1/9,  1/9,      # Axis-Aligned Velocities [1, 2, 3, 4]
-    1/36, 1/36, 1/36, 1/36,     # 45 ° Velocities [5, 6, 7, 8]
+    4/9,
+    1/9,  1/9,  1/9,  1/9,
+    1/36, 1/36, 1/36, 1/36,
 ])
 
 RIGHT_VELOCITIES = np.array([1, 5, 8])
@@ -192,10 +192,10 @@ def main():
             plt.contourf(X, Y, velocity_magnitude, levels=200)
             plt.colorbar().set_label("Velocity Magnitude")
             plt.gca().add_patch(plt.Circle((Cx, Cy), R, color="darkred"))
-            plt.text(0, 130, f"Iteration : {idx}", fontsize=16)
+            plt.text(0, 110, f"Iteration : {idx}", fontsize=16)
 
             plt.subplot(223)
-            plt.contourf(X, Y, curl, levels=200, cmap=cmr.fusion)
+            plt.contourf(X, Y, curl, levels=200, cmap=cmr.fusion, vmin=-0.02, vmax=0.02)
             plt.colorbar().set_label("Vorticity Magnitude")
             plt.gca().add_patch(plt.Circle((Cx, Cy), R, color="darkgreen"))
 
