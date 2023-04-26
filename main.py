@@ -5,9 +5,9 @@ from tqdm import tqdm
 import os
 
 n_epochs = 20000
-skip_steps = 2000
+skip_steps = 10
 
-Re = 80
+Re = 60
 Nx = 300
 Ny = 100
 e = 4
